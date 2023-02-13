@@ -1,10 +1,14 @@
 import React from "react";
 
 interface TodoListProps {
-    items:{id:string,text:string}[]
+    items: { id: string, text: string }[];
+    onDeleteTodo: (id:string)=> void
 }
-export default function TodoList({items}:TodoListProps) {
+
+export default function TodoList({items,onDeleteTodo}: TodoListProps) {
     return <ul>
-        {items.map(item => <li key={item.id}>{item.text}</li>)}
+        {items.map(todo => <li key={todo.id}><span>{todo.text}</span>
+            <button onClick={onDeleteTodo.bind(null,todo.id)}>Delete</button>
+        </li>)}
     </ul>
 }
